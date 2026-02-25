@@ -1,0 +1,1870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritankar Bhunia</title>
+    <meta name="description" content="Portfolio of Ritankar Bhunia, Photographer & Designer.">
+
+    <!-- Google Fonts & Fontshare -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syne:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=nippo@400,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Specific styles for the landing page */
+        body {
+            overflow: hidden;
+            background-color: #D6D3C1; /* Text color from style.css becomes background */
+            color: #000000; /* Text color becomes black */
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .hero-section {
+            position: relative;
+            flex: 1;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        /* Navigation */
+        .hero-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: clamp(1rem, 2.5vw, 2.5rem);
+            /* Removed extra specific padding to rely on grid/flex evenly */
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Left, Center, Right */
+            align-items: center;
+            z-index: 100;
+            mix-blend-mode: difference;
+            pointer-events: none; /* Let clicks pass through if empty space */
+        }
+        
+        .hero-nav a {
+            pointer-events: auto; /* Re-enable clicks for links */
+        }
+
+        .nav-brand {
+            font-family: var(--font-primary);
+            font-size: 0.7rem; /* Unified size */
+            font-weight: 700;
+            color: #d6d3c2; 
+            /* With mix-blend-mode: difference, white text turns black-ish on light bg */
+            color: #fff; 
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            justify-self: start;
+        }
+
+        /* Override for Ritankar text specifically to be black if blend mode fails or is disabled */
+        /* But user wants "negative effect" on mobile, so we need #fff + mix-blend-mode: difference */
+        /* Desktop already has mix-blend-mode difference on .hero-nav */
+
+
+        .nav-center {
+            font-family: var(--font-primary);
+            font-size: 0.7rem; /* Unified size */
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .nav-link-hero {
+            font-family: var(--font-primary);
+            font-size: 0.7rem; /* Unified size */
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            position: relative;
+            justify-self: end; /* Push to right */
+            margin-right: clamp(1rem, 2.5vw, 2.5rem); /* Add margin to keep away from edge */
+        }
+
+        .nav-link-hero .arrow {
+            position: absolute;
+            right: -20px;
+            width: auto;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        
+        /* Arrow color update for black text */
+        .nav-link-hero .arrow svg {
+            fill: #fff;
+        }
+
+        .nav-link-hero:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Custom Cursor Override for light background */
+        #custom-cursor {
+            background-color: #d6d3c2 !important; /* White difference = inversion */
+            mix-blend-mode: difference !important;
+        }
+
+        /* Footer / Bottom Elements */
+        .landing-footer {
+            width: 100%;
+            padding: clamp(1rem, 2.5vw, 2.5rem);
+            /* Match nav grid for alignment */
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Left, Center, Right */
+            align-items: end;
+            position: fixed; /* Fixed to stay on screen */
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding-bottom: 2rem;
+            mix-blend-mode: difference;
+            pointer-events: none;
+        }
+
+        .footer-left {
+            font-family: var(--font-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            justify-self: start;
+        }
+
+        .footer-center {
+            font-family: var(--font-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 24px;
+            width: 60px; /* Force width */
+            pointer-events: auto !important;
+            /* Ensure text color is explicit if mix-blend-mode fails or background matches */
+            color: #000; 
+            mix-blend-mode: difference;
+            color: #fff;
+        }
+
+        .scroll-text {
+             opacity: 1;
+             transform: translateY(0);
+        }
+
+        .scroll-text, .scroll-top-btn {
+            position: absolute;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: none !important; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scroll-top-btn {
+            opacity: 0;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transform: translateY(10px);
+        }
+        
+        .scroll-top-btn svg {
+            /* Hardcode fill to ensure visibility against mix-blend-mode difference */
+            fill: #fff; 
+            stroke: #fff;
+            width: 20px; 
+            height: 20px;
+        }
+        
+
+
+        .footer-center.at-bottom .scroll-text {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+        
+        .footer-center.at-bottom .scroll-top-btn {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        
+        .scroll-top-btn:hover {
+            transform: translateY(-5px) !important;
+        }
+
+        /* Fix Cursor Glitch */
+        a, button, .scroll-top-btn, .nav-link-hero {
+            cursor: none !important; /* Force custom cursor everywhere */
+        }
+        
+        /* Wholesome Popup */
+        #wholesome-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 80px; /* Reduced from 250px */
+            background: #fff;
+            padding: 4px; /* Reduced from 1rem */
+            border-radius: 4px; 
+            pointer-events: none;
+            opacity: 0;
+            /* Reset transform here, managed by JS position */
+            transform-origin: top left;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 200; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Minimal shadow */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        #wholesome-popup.active {
+            opacity: 1;
+        }
+        
+        .popup-img {
+            width: 100%;
+            height: 80px; /* Square */
+            object-fit: cover;
+            background-color: #eee;
+        }
+        
+        .popup-msg {
+            display: none; /* Hide message */
+            font-size: 0.8rem;
+            color: #000;
+            line-height: 1.4;
+        }
+        
+        /* Thank You Cursor Extension */
+        #thank-you-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 300;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column; /* Stack image and text vertically */
+            align-items: center;
+            gap: 5px;
+            /* transform removed to allow custom offset via JS */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        #thank-you-cursor.visible {
+            opacity: 1;
+        }
+
+        .cursor-img {
+            width: 80px; /* Slightly larger for square showcase */
+            height: 80px;
+            border-radius: 4px; /* Slight rounded corners for square */
+            object-fit: cover;
+            border: 1px solid #fff; /* Thinner border */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cursor-msg {
+            background: #fff;
+            color: #000;
+            padding: 4px 10px;
+            border-radius: 4px; /* Square off the pill slightly or keep it pill? User said text below. */
+            font-family: var(--font-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+
+        .footer-right {
+            font-family: var(--font-primary);
+            font-size: 0.7rem; 
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            justify-self: end;
+            margin-right: clamp(1rem, 2.5vw, 2.5rem); /* Align with About button */
+        }
+        
+        /* Default: Hide Mobile Elements on Desktop */
+        #mobile-canvas, 
+        .mobile-fixed-footer, 
+        .mobile-scroll-indicator {
+            display: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            /* MOBILE VIEW: Hide all desktop content */
+            .scroll-spacer,
+            .scroll-container,
+            .gallery-item,
+            .end-canvas,
+            .nav-center { /* Hide redundant header text */
+                display: none !important;
+            }
+
+            /* Adjust Nav for Mobile (2 columns instead of 3) */
+            .hero-nav {
+                grid-template-columns: 1fr auto;
+                pointer-events: none;
+            }
+            .hero-nav a {
+                pointer-events: auto;
+            }
+
+            /* Show mobile canvas */
+            #mobile-canvas {
+                display: block;
+                width: 100%;
+                min-height: 100vh;
+                position: relative;
+                background-color: #D6D3C1;
+                margin-top: 0;
+                padding-top: 0; 
+                padding-bottom: 80px; /* Space for footer */
+                z-index: 1; /* Behind nav/footer */
+            }
+
+            .mobile-gallery-container {
+                padding-top: 15vh; /* Initial push so images start below "SCROLL" */
+                padding-bottom: 5vh;
+            }
+
+            .mobile-gallery-item {
+                width: 100%;
+                margin-bottom: 4rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1.5rem;
+                opacity: 0; /* Revert to opacity 0, but handle in JS */
+                transform: translateY(20px);
+                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            }
+
+            .mobile-gallery-item.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Mobile Footer Hidden - We will reuse parts or create new */
+            .landing-footer {
+                display: none !important;
+            }
+
+            /* Hide Desktop Hover Features */
+            #custom-cursor, #thank-you-cursor, #wholesome-popup {
+                display: none !important;
+            }
+
+            /* Mobile Nav Styling - Transparent & Fixed with negative effect */
+            .hero-nav {
+                background: transparent;
+                backdrop-filter: none;
+                padding: 1.5rem;
+                mix-blend-mode: difference; /* Force negative effect on mobile */
+                /* grid-template-columns handled in media query start */
+                gap: 1rem;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                box-shadow: none;
+                pointer-events: none; /* Allow clickthrough on header area */
+            }
+
+            .hero-nav a {
+                pointer-events: auto; /* Re-enable for links */
+                display: initial; /* Restore visibility if hidden */
+            }
+
+            .nav-link-hero {
+                color: #fff; /* White + difference = Blackish text effect */
+                font-size: 0.7rem;
+                margin-right: 0;
+                mix-blend-mode: normal;
+            }
+
+            .nav-link-hero .arrow svg {
+                fill: #fff; /* White + difference = Blackish icon */
+            }
+            
+            /* Mobile Fixed Footer Text */
+            .mobile-fixed-footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding: 1.5rem;
+                text-align: center;
+                z-index: 1000;
+                pointer-events: none;
+                display: flex;
+                justify-content: center;
+                mix-blend-mode: difference;
+            }
+            
+            .mobile-footer-text {
+                font-family: var(--font-primary);
+                font-size: 0.7rem;
+                font-weight: 700;
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+
+            /* Body reset for mobile */
+            body {
+                background-color: #D6D3C1;
+                overflow-y: auto;
+                overflow-x: hidden; /* Prevent horizontal drift */
+                height: auto;
+                min-height: 100vh;
+                display: block; /* Remove flex layout constraints */
+            }
+
+            html {
+                overflow-y: auto;
+                height: auto;
+            }
+
+            body.no-scroll {
+                overflow: hidden;
+                height: 100vh;
+            }
+            
+            /* Mobile Scroll Indicator */
+            .mobile-scroll-indicator {
+                position: fixed;
+                bottom: 15vh;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                z-index: 900;
+                transition: opacity 0.5s ease;
+                pointer-events: none;
+            }
+            
+            .mobile-scroll-indicator.hidden {
+                opacity: 0;
+            }
+            
+            .mobile-scroll-text {
+                font-family: var(--font-primary);
+                font-size: 0.65rem;
+                font-weight: 700;
+                color: #000;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+            
+            .mobile-scroll-arrow svg {
+                fill: #000;
+                width: 24px;
+                height: 24px;
+                animation: bounce 2s infinite;
+            }
+            
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+                40% {transform: translateY(-5px);}
+                60% {transform: translateY(-3px);}
+            }
+            
+            /* Mobile Gallery Images */
+            .mobile-gallery-item {
+                width: 100%;
+                margin-bottom: 4rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1.5rem;
+            }
+            
+            .mobile-gallery-img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-gallery-caption {
+                font-family: var(--font-primary);
+                font-size: 0.6rem;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: #000;
+                margin-top: 0.5rem;
+                align-self: flex-start;
+            }
+            
+            /* Mobile End Section - Increased Space */
+            .mobile-end-section {
+                padding: 0 1.5rem; /* Remove top/bottom padding as we want to control height precisely */
+                display: flex;
+                flex-direction: column;
+                gap: 4rem; 
+                min-height: 100vh; /* Full viewport height */
+                justify-content: center;
+                margin-top: 10vh; /* separation */
+                opacity: 0;
+                transform: translateY(50px);
+                transition: opacity 1s ease, transform 1s ease;
+            }
+
+            .mobile-end-section.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .mobile-thank-you-container {
+                position: relative;
+                width: 100%;
+                margin-bottom: 2rem; /* Additional space before player */
+            }
+            
+            .mobile-thank-you-text {
+                font-family: var(--font-nippo);
+                font-size: 15vw;
+                font-weight: 900;
+                line-height: 0.85;
+                text-transform: uppercase;
+                color: #222;
+                text-align: left; /* Aligned left as requested */
+                width: fit-content;
+                margin: 0 auto; /* Centered block */
+            }
+            
+            .mobile-thank-you-text span {
+                display: block;
+            }
+            
+            /* Square Image & Message - South East of Thank You */
+            .mobile-signature-block {
+                position: absolute;
+                bottom: -20px; /* Brought closer to text (was -60px) */
+                right: 0; /* Align to right */
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end; /* Align items to right */
+                gap: 0;
+                transform: translateX(5%); /* Reduced offset */
+            }
+            
+            .mobile-sig-img {
+                width: 45px; /* Smaller image as requested */
+                height: 45px;
+                object-fit: cover;
+                border: 1px solid #fff;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                border-radius: 4px;
+            }
+            
+            .mobile-sig-msg {
+                display: none; /* Hide message as requested */
+            }
+            
+            /* Mobile Music Player */
+            .mobile-player-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center aligned */
+                gap: 1.5rem;
+                width: 100%;
+                margin-top: 4rem; /* More space from previous section */
+            }
+
+            .mobile-on-repeat {
+                font-family: var(--font-primary);
+                font-size: 0.6rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: #000;
+                margin-bottom: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 6px;
+                opacity: 0.6;
+            }
+
+            .mobile-on-repeat::before {
+                content: '';
+                display: block;
+                width: 6px;
+                height: 6px;
+                background-color: #000;
+                border-radius: 50%;
+                animation: blink 2s infinite;
+            }
+            
+            @keyframes blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.4; }
+            }
+            
+            .mobile-player-wrapper {
+                position: relative;
+                width: 250px;
+                height: 250px;
+                cursor: pointer; /* Clickable */
+            }
+            
+            .mobile-player-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            
+            .mobile-album-art {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+                z-index: 10;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                border-radius: 4px; /* Slight radius */
+            }
+            
+            /* Peeking Record Logic for Mobile */
+            .mobile-vinyl-record {
+                position: absolute;
+                top: 5px;
+                bottom: 5px;
+                right: 5px;
+                left: 5px;
+                border-radius: 50%;
+                background: #111;
+                /* Concentric circles */
+                background-image: repeating-radial-gradient(#111 0, #111 2px, #222 3px, #222 4px);
+                z-index: 5;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* Peek out to the right */
+                transform: translateX(25%) rotate(20deg);
+                transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy spring */
+            }
+            
+            .mobile-player-wrapper.playing .mobile-vinyl-record {
+                animation: mobileSpin 3s linear infinite;
+                /* When playing, maybe peek out a bit more? */
+                transform: translateX(40%); 
+            }
+            
+            @keyframes mobileSpin {
+                from { transform: translateX(40%) rotate(0deg); }
+                to { transform: translateX(40%) rotate(360deg); }
+            }
+            
+            .mobile-vinyl-label {
+                width: 35%; 
+                height: 35%;
+                background: #d6d3c2;
+                border-radius: 50%;
+            }
+            
+            .mobile-play-btn {
+                position: absolute; 
+                top: 0; left: 0; width: 100%; height: 100%;
+                z-index: 20;
+                background: transparent;
+                border: none;
+                /* Provide visual cue on the record part? */
+            }
+            
+            /* Arrow to scroll top */
+            .mobile-scroll-top {
+                margin-top: 2rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                cursor: pointer;
+            }
+            
+            .mobile-scroll-top svg {
+                fill: #000;
+                width: 24px;
+                height: 24px;
+            }
+            
+            .mobile-scroll-top-text {
+                font-family: var(--font-primary);
+                font-size: 0.6rem;
+                font-weight: 700;
+                color: #000;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+            }
+        }
+        
+        /* New Styles for Horizontal Scroll */
+        body {
+            /* Reset body to allow scroll */
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: auto;
+            min-height: 100vh;
+        }
+
+        .scroll-spacer {
+            height: 300vh; /* Reduced from 400vh for snappier experience */
+            pointer-events: none;
+        }
+        
+        .hero-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Start from left */
+            padding: 0;
+            perspective: 1000px;
+        }
+        
+        .scroll-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+        
+        .scroll-track {
+            display: flex;
+            gap: 2vw; /* Reduced gap since we want them closer */
+            padding-left: 50vw; 
+            padding-right: 50vw;
+            height: 100vh; /* Full height to allow vertical offsets */
+            align-items: center;
+            will-change: transform;
+        }
+        
+        .gallery-item {
+            position: relative;
+            flex-shrink: 0;
+            opacity: 0;
+            /* Use CSS Variable for the offset so we can combine it with scale */
+            transform: translateY(var(--y-offset, 0)) scale(0.8);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.8s ease;
+            filter: grayscale(100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-caption {
+            font-family: var(--font-primary);
+            font-size: 0.6rem; /* Decreased size */
+            text-transform: uppercase;
+            letter-spacing: 0.1em; /* Increased spacing */
+            color: #000;
+            opacity: 0.8;
+            max-width: 100%;
+            /* Absolute positioning to handle "on top" or "below" without layout shift */
+            position: absolute; 
+            left: 0;
+        }
+
+        /* Default caption below */
+        .gallery-caption.bottom {
+            top: 100%;
+            margin-top: 0.8vh;
+        }
+        
+        /* Caption above for low-hanging images */
+        .gallery-caption.top {
+            bottom: 100%;
+            margin-bottom: 0.8vh;
+        }
+        
+        /* When visible, keep the offset but scale up */
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(var(--y-offset, 0)) scale(1);
+            filter: grayscale(0%);
+        }
+        
+        .gallery-image {
+            width: auto;
+            height: 100%; /* Will take up remaining space minus caption */
+            flex-grow: 1;
+            object-fit: contain;
+            display: block;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        /* End Canvas Section */
+        .end-canvas {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #D6D3C1; /* Clean slate */
+            color: #000;
+            display: flex; /* Flexbox */
+            align-items: stretch; /* Full height grid */
+            justify-content: center;
+            z-index: 50; /* Above fixed hero as we scroll into it */
+            overflow: hidden;
+            padding: 0 5vw; /* Left/Right padding */
+        }
+        
+        .canvas-grid {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        /* Left Side */
+        .canvas-left {
+            flex: 0 0 50%; /* Strictly 50% */
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align text close to the divider */
+            padding-right: 4vw; /* Space from divider */
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 1s ease, transform 1s ease;
+            height: 100%; 
+        }
+        
+        .thank-you-stack {
+            font-family: var(--font-nippo);
+            font-size: 10vw; /* Reduced from 13vw */
+            font-weight: 900;
+            line-height: 0.85;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            color: #222; 
+            text-align: right;
+        }
+
+        .canvas-grid {
+             width: 100%;
+             height: 100%;
+             display: flex;
+             align-items: center; /* Center vertical */
+             justify-content: center;
+             margin: 0;
+        }
+        
+        /* Subtle Divider Line */
+        .canvas-divider {
+            display: block;
+            width: 1px;
+            height: 0%; /* Starts at 0 */
+            background-color: rgba(0,0,0,0.15); /* Subtle opacity */
+            transition: height 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Right Side - Music Player Canvas */
+        .canvas-right {
+             flex: 0 0 50%; /* Strictly 50% */
+             width: 50%;
+             height: 100%;
+             display: flex;
+             align-items: center;
+             justify-content: flex-start;
+             padding-left: 6vw; /* Reduced padding for player */
+             position: relative;
+        }
+
+        .music-player-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            transform: translateX(50px);
+            opacity: 0;
+            transition: opacity 1s ease 0.2s, transform 1s ease 0.2s; /* Delayed Entry */
+            margin-left: 20px; /* Shift a bit from divider */
+            z-index: 100; /* Ensure it is top of everything */
+        }
+        
+        .end-canvas.visible .music-player-container {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Album Art Wrapper */
+        .player-wrapper {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            /* Container for art + vinyl */
+        }
+
+        .album-art-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            background: #000;
+            overflow: hidden; /* Keep art contained */
+        }
+        
+        .album-art {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Vinyl Record */
+        .vinyl-record {
+            position: absolute;
+            top: 2%; /* Slightly smaller than art to peek naturally */
+            right: 2%; 
+            bottom: 2%;
+            left: 2%;
+            border-radius: 50%;
+            background: #111;
+            /* Concentric circles "grooves" */
+            background-image: repeating-radial-gradient(
+              #111 0, 
+              #111 2px, 
+              #222 3px, 
+              #222 4px
+            );
+            z-index: 1; /* Behind Art */
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Vinyl Peek on Hover (Only if not expanded) */
+        .player-wrapper:not(.expanded):hover .vinyl-record {
+            transform: translateX(20%) rotate(20deg);
+        }
+        
+        /* Expanded State (Clicked Arrow) */
+        .player-wrapper.expanded .vinyl-record {
+            /* Move out completely to the right */
+            transform: translateX(60%) rotate(0deg); /* No rotation on expand, so button is Up */
+            z-index: 5; 
+        }
+        
+        /* Spinning Animation When Playing */
+        @keyframes spin {
+            from { transform: translateX(60%) rotate(0deg); }
+            to { transform: translateX(60%) rotate(360deg); }
+        }
+        
+        .player-wrapper.expanded.playing .vinyl-record {
+            animation: spin 3s linear infinite;
+        }
+
+        /* Toggle Button (The Subtle Arrow) */
+        .vinyl-toggle-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 32px;
+            height: 32px;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            z-index: 20;
+        }
+        
+        /* Ensure normal hover keeps it scale 1 but rotate 0 IF NOT ACTIVE */
+        .player-wrapper:hover .vinyl-toggle-btn:not(.active) {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* If ACTIVE, it should be rotated regardless of wrapper hover */
+        .vinyl-toggle-btn.active,
+        .player-wrapper:hover .vinyl-toggle-btn.active {
+            opacity: 1;
+            background: #fff;
+            transform: scale(1) rotate(180deg);
+        }
+        
+        .vinyl-toggle-btn svg {
+            fill: #fff;
+            width: 18px;
+            height: 18px;
+            transition: fill 0.3s;
+        }
+        
+        .vinyl-toggle-btn.active svg {
+            fill: #000;
+        }
+
+        /* Play/Pause Button on Vinyl Center */
+        .vinyl-control-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            z-index: 30;
+            display: flex; /* Always flex to center content */
+            align-items: center;
+            justify-content: center;
+            pointer-events: none; /* Only clickable when expanded */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .player-wrapper.expanded .vinyl-control-btn {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .vinyl-control-btn svg {
+            fill: #fff;
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Label Center */
+        .vinyl-label {
+            width: 35%;
+            height: 35%;
+            background: #d6d3c2;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center it */
+        }
+
+        .song-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .song-title {
+            font-family: var(--font-nippo);
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .artist-name {
+            font-family: var(--font-primary);
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Visible State Triggered by JS */
+        .end-canvas.visible .canvas-left {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .end-canvas.visible .canvas-divider {
+            height: 80%; /* Grows to 80% */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="custom-cursor"></div>
+
+    <div id="wholesome-popup">
+        <img src="img/me.jpeg" class="popup-img" alt="Me">
+    </div>
+
+    <!-- Thank You Cursor Extension -->
+    <div id="thank-you-cursor">
+        <img src="img/me.jpeg" class="cursor-img" alt="Me">
+        <div class="cursor-msg">in progress</div>
+    </div>
+    
+    <!-- Mobile Footer Text (Fixed) -->
+    <div class="mobile-fixed-footer">
+        <span class="mobile-footer-text">CHITRO KATHA | PORTFOLIO</span>
+    </div>
+
+    <!-- Mobile Scroll Arrow -->
+    <div class="mobile-scroll-indicator" id="mobile-scroll-indicator">
+        <span class="mobile-scroll-text">SCROLL</span>
+        <span class="mobile-scroll-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+        </span>
+    </div>
+
+    <!-- Mobile Canvas -->
+    <div id="mobile-canvas">
+        <!-- Content will be injected by JS -->
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="hero-nav">
+        <a href="#" class="nav-brand">RITANKAR</a>
+        <span class="nav-center">CHITRO KATHA | PORTFOLIO</span>
+        <a href="about.html" class="nav-link-hero">
+            ABOUT <span class="arrow"><svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="#000000"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"/></svg></span>
+        </a>
+    </nav>
+
+    <section class="hero-section">
+        <!-- Horizontal Scroll Container -->
+        <div class="scroll-container">
+            <div class="scroll-track" id="image-track">
+                <!-- Images will be injected here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Spacer to allow scrolling -->
+    <div class="scroll-spacer"></div>
+
+    <!-- End Page Canvas -->
+    <section class="end-canvas">
+        <div class="canvas-grid">
+            <div class="canvas-left">
+                <div class="thank-you-stack">
+                    <span>THANK</span>
+                    <span>YOU</span>
+                </div>
+            </div>
+            
+            <div class="canvas-divider"></div>
+            
+            <div class="canvas-right">
+                <!-- Music Player Component -->
+                <div class="music-player-container">
+                    
+                    <div class="header-status-dot"></div>
+                    <div class="on-repeat-header">CURRENTLY ON REPEAT</div>
+
+                    <div class="player-wrapper">
+                        <!-- Vinyl Record (Start hidden behind) -->
+                        <div class="vinyl-record">
+                            <div class="vinyl-grooves"></div>
+                            <div class="vinyl-label"></div>
+                            <button class="vinyl-control-btn" aria-label="Play/Pause">
+                                <svg class="icon-play" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M320-200v-560l440 280-440 280Z"/></svg>
+                                <svg class="icon-pause" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff" style="display:none;"><path d="M520-200v-560h240v560H520Zm-320 0v-560h240v560H200Z"/></svg>
+                            </button>
+                        </div>
+                        
+                        <!-- Album Art + Toggle -->
+                        <div class="album-art-wrapper">
+                            <img src="img/album_art.jpeg" alt="Album Art" class="album-art">
+                            <button class="vinyl-toggle-btn" aria-label="Expand Player">
+                                <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="song-info">
+                        <span class="song-title">Terrible Wishlists</span>
+                        <span class="artist-name">Siyaahi</span>
+                    </div>
+
+                    <audio id="bg-music" loop>
+                        <source src="Terrible Wishlists.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+        <div class="footer-left">HIRE ME AND I'LL SKIP ENGINEERING</div>
+        <div class="footer-center">
+            <span class="scroll-text">SCROLL</span>
+            <!-- Material Symbol North/Up Arrow -->
+            <span class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                    <path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/>
+                </svg>
+            </span>
+        </div>
+        <div class="footer-right" id="clock">00:00:00</div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Mobile Detection
+        const isMobile = window.innerWidth <= 768;
+
+        // Clock Functionality
+        function updateClock() {
+            const now = new Date();
+            
+            // Format time as HH:MM
+            const timeString = now.toLocaleTimeString('en-US', {
+                hour12: false, 
+                //hour: '2-digit', 
+                minute: '2-digit'
+            }).replace(/(.*)\D\d+/, '$1'); // clean up seconds/AMPM if needed, but '2-digit' usually handles it. 
+            // Actually just use slices for custom format if locale gets weird
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const cleanTime = `${hours}:${minutes}`;
+
+            // Get timezone code (e.g., IST, GMT, EST)
+            const timeZoneString = now.toLocaleTimeString('en-us',{timeZoneName:'short'}).split(' ')[2] || 'IST';
+
+            const clockElement = document.getElementById('clock');
+            if (clockElement) {
+                clockElement.textContent = `${cleanTime} ${timeZoneString}`;
+            }
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Initial call
+        
+        // Shared Data for Mobile (Duplicated temporarily to fix scope issue)
+        const mobileGalleryData = [
+            { src: 'img/best1.jpeg', caption: 'Literature for the lonely' },
+            { src: 'img/best2.jpeg', caption: 'care' },
+            { src: 'img/best3.jpeg', caption: 'warmth' },
+            { src: 'img/best4.jpeg', caption: 'light' },
+            { src: 'img/best5.jpeg', caption: 'rest' },
+            { src: 'img/durga1.jpeg', caption: 'final touch' },
+            { src: 'img/durga2.png', caption: 'artisans at work' },
+            { src: 'img/durga3.jpeg', caption: 'mahishasura mardini' },
+            { src: 'img/durga4.jpeg', caption: 'pandal' },
+            { src: 'img/durga5.jpeg', caption: 'birth of the goddess' },
+            { src: 'img/durga6.jpeg', caption: 'farewell' },
+            { src: 'img/durga7.jpeg', caption: 'kumortuli' },
+            { src: 'img/kash1.jpeg', caption: 'gulmarg' },
+            { src: 'img/kash2.jpeg', caption: 'day at work' },
+            { src: 'img/kol.jpeg', caption: 'a narrow lane of north calcutta' },
+            { src: 'img/old1.jpeg', caption: 'Mercedes-Benz W108/W109' },
+            { src: 'img/old2.jpeg', caption: 'old town' },
+            { src: 'img/old3.jpeg', caption: 'ancient facades' },
+            { src: 'img/old4.jpeg', caption: 'a master\'s workshop' },
+            { src: 'img/phuket1.jpeg', caption: 'emerald sea' },
+            { src: 'img/phuket2.jpeg', caption: 'sacred wat' },
+            { src: 'img/phuket3.jpeg', caption: 'through the tide' },
+            { src: 'img/phuket4.JPG', caption: 'golden chofa' },
+            { src: 'img/phuket5.JPG', caption: 'stranded rocks' },
+            { src: 'img/phuket6.JPG', caption: 'explore' },
+            { src: 'img/phuket7.JPG', caption: 'secret cove' },
+            { src: 'img/phuket8.JPG', caption: 'dusk' },
+            { src: 'img/pray.jpg', caption: 'devotion' },
+            { src: 'img/shikara.jpeg', caption: 'Shikara' },
+            { src: 'img/tabla.JPG', caption: 'Teen taal' }
+        ];
+
+        // Initial Check and Listener for Resize
+        function handleResize() {
+            const wasMobile = isMobile;
+            const nowMobile = window.innerWidth <= 768;
+            
+            if (wasMobile !== nowMobile) {
+                // Mode changed, reload to avoid logic conflict
+                window.location.reload();
+            }
+        }
+        
+        // Use debounce for resize to avoid too many reloads
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(handleResize, 250);
+        });
+
+        // Skip desktop-only features on mobile (Existing logic follows...)
+        if (isMobile) {
+            // Mobile view - blank canvas, no gallery animations
+            console.log('Mobile view detected - showing mobile gallery');
+            
+            // Hide everything desktop
+            const mobileCanvas = document.getElementById('mobile-canvas');
+            const scrollIndicator = document.getElementById('mobile-scroll-indicator');
+            
+            // Handle Scroll Arrow Visibility
+            if (scrollIndicator) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        scrollIndicator.classList.add('hidden');
+                    } else {
+                        scrollIndicator.classList.remove('hidden');
+                    }
+                });
+            }
+            
+            // Render Mobile Content
+            if (mobileCanvas) {
+                // Clear
+                mobileCanvas.innerHTML = '';
+                
+                // 1. Render Gallery Images
+                const galleryContainer = document.createElement('div');
+                galleryContainer.className = 'mobile-gallery-container';
+                // galleryContainer.style.paddingTop = '10vh'; // Removed manual padding
+                
+                // Use mobileGalleryData
+                mobileGalleryData.forEach((img, i) => {
+                    const item = document.createElement('div');
+                    item.className = 'mobile-gallery-item';
+                    
+                    // Add some random left/right padding or margin to simulate randomization?
+                    // "if randomization doesn't fit well, i dont mind a basic scroll" 
+                    // Let's keep it simple and clean as requested: "normal vertical scrolling"
+                    
+                    item.innerHTML = `
+                        <img src="${img.src}" class="mobile-gallery-img" loading="lazy" alt="${img.caption}">
+                        <div class="mobile-gallery-caption">IMG. ${String(i+1).padStart(2, '0')} — ${img.caption}</div>
+                    `;
+                    galleryContainer.appendChild(item);
+                });
+                
+                mobileCanvas.appendChild(galleryContainer);
+
+                // Simple Intersection Observer for fade-in
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                const mobileItems = document.querySelectorAll('.mobile-gallery-item');
+                if (mobileItems.length > 0) {
+                     // Force first few visible immediately
+                     mobileItems[0].classList.add('visible');
+                     if (mobileItems[1]) mobileItems[1].classList.add('visible');
+                }
+
+                mobileItems.forEach(item => {
+                    observer.observe(item);
+                });
+                
+                // 2. Render Thank You Section
+                const endSection = document.createElement('div');
+                endSection.className = 'mobile-end-section';
+                
+                endSection.innerHTML = `
+                    <div class="mobile-thank-you-container">
+                        <h1 class="mobile-thank-you-text">
+                            <span>THANK</span>
+                            <span>YOU</span>
+                        </h1>
+                        <div class="mobile-signature-block">
+                            <img src="img/me.jpeg" class="mobile-sig-img" alt="Me">
+                            <span class="mobile-sig-msg">in progress</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-player-container">
+                        <div class="mobile-on-repeat">CURRENTLY ON REPEAT</div>
+                        <div class="mobile-player-wrapper" id="mobile-player-wrapper">
+                            <div class="mobile-player-inner">
+                                <img src="img/album_art.jpeg" class="mobile-album-art" alt="Album Art">
+                                <div class="mobile-vinyl-record">
+                                    <div class="mobile-vinyl-label"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="song-info" style="text-align: center;">
+                            <span class="song-title" style="color: #000;">Terrible Wishlists</span>
+                            <span class="artist-name">Siyaahi</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
+                        <span class="mobile-scroll-top-text">BACK TO TOP</span>
+                    </div>
+                `;
+                
+                mobileCanvas.appendChild(endSection);
+
+                // Observe end section for visibility transition
+                observer.observe(endSection);
+                
+                // Mobile Music Logic
+                const mobilePlayerWrapper = document.getElementById('mobile-player-wrapper');
+                const audio = document.getElementById('bg-music');
+                
+                if (mobilePlayerWrapper && audio) {
+                    mobilePlayerWrapper.addEventListener('click', () => {
+                        if (audio.paused) {
+                            audio.play().then(() => {
+                                mobilePlayerWrapper.classList.add('playing');
+                            }).catch(e => console.error("Audio play failed", e));
+                        } else {
+                            audio.pause();
+                            mobilePlayerWrapper.classList.remove('playing');
+                        }
+                    });
+                }
+            }
+            
+        } else {
+            // Desktop view - initialize all animations and features
+            // Horizontal Scroll Gallery Logic
+        const track = document.getElementById('image-track');
+        
+        // Define your images and their descriptions here
+        const galleryImages = [
+            { src: 'img/best1.jpeg', caption: 'Literature for the lonely' },
+            { src: 'img/best2.jpeg', caption: 'care' },
+            { src: 'img/best3.jpeg', caption: 'warmth' },
+            { src: 'img/best4.jpeg', caption: 'light' },
+            { src: 'img/best5.jpeg', caption: 'rest' },
+            { src: 'img/durga1.jpeg', caption: 'final touch' },
+            { src: 'img/durga2.png', caption: 'artisans at work' },
+            { src: 'img/durga3.jpeg', caption: 'mahishasura mardini' },
+            { src: 'img/durga4.jpeg', caption: 'pandal' },
+            { src: 'img/durga5.jpeg', caption: 'birth of the goddess' },
+            { src: 'img/durga6.jpeg', caption: 'farewell' },
+            { src: 'img/durga7.jpeg', caption: 'kumortuli' },
+            { src: 'img/kash1.jpeg', caption: 'gulmarg' },
+            { src: 'img/kash2.jpeg', caption: 'day at work' },
+            { src: 'img/kol.jpeg', caption: 'a narrow lane of north calcutta' },
+            { src: 'img/old1.jpeg', caption: 'Mercedes-Benz W108/W109' },
+            { src: 'img/old2.jpeg', caption: 'old town' },
+            { src: 'img/old3.jpeg', caption: 'ancient facades' },
+            { src: 'img/old4.jpeg', caption: 'a master\'s workshop' },
+            { src: 'img/phuket1.jpeg', caption: 'emerald sea' },
+            { src: 'img/phuket2.jpeg', caption: 'sacred wat' },
+            { src: 'img/phuket3.jpeg', caption: 'through the tide' },
+            { src: 'img/phuket4.JPG', caption: 'golden chofa' },
+            { src: 'img/phuket5.JPG', caption: 'stranded rocks' },
+            { src: 'img/phuket6.JPG', caption: 'explore' },
+            { src: 'img/phuket7.JPG', caption: 'secret cove' },
+            { src: 'img/phuket8.JPG', caption: 'dusk' },
+            { src: 'img/pray.jpg', caption: 'devotion' },
+            { src: 'img/shikara.jpeg', caption: 'Shikara' },
+            { src: 'img/tabla.JPG', caption: 'Teen taal' }
+        ];
+
+        const numImages = galleryImages.length;
+        const placeHolderColors = [
+            '#e8e8e8', '#d0d0d0', '#c8c8c8', '#b0b0b0', '#f0f0f0', '#a0a0a0'
+        ];
+        
+        // Random Generators
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        // Create curated images from the array
+        for (let i = 0; i < numImages; i++) {
+            const imageData = galleryImages[i];
+            const item = document.createElement('div');
+            item.classList.add('gallery-item');
+            
+            // Randomize aspect ratio / size MORE aggressively
+            // 3 Types: Small, Medium, Large
+            const sizeType = Math.random();
+            let widthBase, heightBase;
+            heightBase;
+            
+            // Varied heights to create rhythm, but let width be auto to preserve aspect ratio
+            if (sizeType < 0.2) {
+                // Small (20%)
+                heightBase = randomInt(30, 40);
+            } else if (sizeType < 0.6) {
+                // Medium (40%)
+                heightBase = randomInt(40, 55);
+            } else {
+                // Large (40% - increased frequency)
+                heightBase = randomInt(55, 75); 
+            }
+            
+            // Random Y Offset for "editorial feel" 
+            const yOffset = randomInt(-15, 15); // Reduced offset range to keep images in view
+            
+            // Determine caption position based on Y offset
+            // If the image is pushed down (positive yOffset), place caption on TOP
+            // If the image is pushed up (negative yOffset), place caption on BOTTOM
+            const captionPositionClass = yOffset > 0 ? 'top' : 'bottom';
+            
+            // Tighter spacing on X axis
+            const marginLeft = randomInt(2, 6); 
+            const marginRight = randomInt(2, 6);
+            
+            // Style
+            item.style.height = heightBase + 'vh';
+            item.style.width = 'auto'; // Allow width to adjust based on image aspect ratio
+            // Set CSS Variable for the transform
+            item.style.setProperty('--y-offset', `${yOffset}vh`);
+            
+            // Random Z-Index to clear up any overlap visual glitches
+            item.style.zIndex = randomInt(1, 5);
+            
+            item.style.marginLeft = marginLeft + 'vw';
+            item.style.marginRight = marginRight + 'vw';
+            
+            // Image Content
+            const bg = placeHolderColors[randomInt(0, placeHolderColors.length - 1)];
+            
+            item.innerHTML = `
+                <img src="${imageData.src}" 
+                     class="gallery-image"
+                     style="background-color: ${bg};"
+                     loading="lazy"
+                     alt="${imageData.caption}" />
+                <div class="gallery-caption ${captionPositionClass}">IMG. ${String(i+1).padStart(2, '0')} — ${imageData.caption}</div>
+            `;
+            
+            track.appendChild(item);
+        }
+        
+        // Animation Loop
+        const scrollSpacer = document.querySelector('.scroll-spacer');
+        const endCanvas = document.querySelector('.end-canvas');
+        const footerCenter = document.querySelector('.footer-center');
+        
+        // Wait for next frame to ensure spacer is rendered height
+        let totalScrollHeight = 0;
+        let horizontalScrollLength = 0;
+        
+        function updateDimensions() {
+             // The scrollable area for the horizontal part is the spacer height
+             horizontalScrollLength = scrollSpacer.offsetHeight - window.innerHeight;
+             // Total document height is handled by browser
+        }
+        window.addEventListener('resize', updateDimensions);
+        updateDimensions();
+
+        function animate() {
+            // Check for Mobile Width
+            if (window.innerWidth <= 768) {
+                // MOBILE LOGIC:
+                // Simple vertical scroll intersection observer-like behavior
+                const items = document.querySelectorAll('.gallery-item');
+                items.forEach(item => {
+                    const rect = item.getBoundingClientRect();
+                    // Visible if in viewport vertically
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        item.classList.add('visible');
+                    } else {
+                         // Optional: remove visible, or keep it once shown
+                         // item.classList.remove('visible'); 
+                    }
+                });
+                
+                // End Canvas Visibility on Mobile
+                // Just check if it's in view
+                const endRect = endCanvas.getBoundingClientRect();
+                if (endRect.top < window.innerHeight * 0.8) {
+                     endCanvas.classList.add('visible');
+                     footerCenter.classList.add('at-bottom');
+                } else {
+                     endCanvas.classList.remove('visible');
+                     footerCenter.classList.remove('at-bottom');
+                }
+                
+                requestAnimationFrame(animate);
+                return; // SKIP Desktop Logic
+            }
+
+            const scrollY = window.scrollY;
+            
+            // Logic:
+            // 0 to horizontalScrollLength -> Scroll the horizontal track
+            // > horizontalScrollLength -> We receive normal vertical scroll behavior because end-canvas is physically below spacer
+            
+            // Clamp progress between 0 and 1 for the horizontal part
+            let progress = 0;
+            if (horizontalScrollLength > 0) {
+                 progress = Math.min(Math.max(scrollY / horizontalScrollLength, 0), 1);
+            }
+            
+            // Calculate total width of track
+            const trackWidth = track.scrollWidth;
+            const viewportWidth = window.innerWidth;
+            
+            // Horizontal translation
+            // Adding a small buffer to ensure the last image is fully cleared/visible
+            const x = -((trackWidth - viewportWidth + 100) * progress);
+            
+            // Apply transform to track
+            track.style.transform = `translateX(${x}px)`;
+            
+            // Check visibility for items
+            const items = document.querySelectorAll('.gallery-item');
+            items.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                
+                // Visible if it enters from the right (120% of viewport width) 
+                // and hasn't left completely to the left (-20%)
+                if (rect.left < window.innerWidth * 1.1 && rect.right > -window.innerWidth * 0.1) {
+                    item.classList.add('visible');
+                } else {
+                    item.classList.remove('visible');
+                }
+            });
+            
+            // Update Footer State
+            // Only trigger when the End Canvas is actively scrolling up
+            if (horizontalScrollLength > 0 && scrollY > horizontalScrollLength + window.innerHeight * 0.1) {
+                // If we are well into the vertical scroll portion
+                footerCenter.classList.add('at-bottom');
+                endCanvas.classList.add('visible');
+            } else {
+                // Also check if endCanvas is physically visible for consistency
+                const endRect = endCanvas.getBoundingClientRect();
+                if (endRect.top < window.innerHeight * 0.8) {
+                    footerCenter.classList.add('at-bottom');
+                    endCanvas.classList.add('visible'); 
+                } else {
+                    footerCenter.classList.remove('at-bottom');
+                    endCanvas.classList.remove('visible');
+                }
+            }
+            
+            requestAnimationFrame(animate);
+         }
+        
+        // Start animation loop
+        animate();
+        
+        // Wholesome Popup Logic & Thank You Cursor Logic
+        const popup = document.getElementById('wholesome-popup');
+        const thankYouCursor = document.getElementById('thank-you-cursor');
+        let isPopupActive = false;
+
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        
+        // Mouse Position State
+        let mouseX = 0;
+        let mouseY = 0;
+        let cursorX = 0;
+        let cursorY = 0;
+        
+        // Music Player Logic
+        const playerWrapper = document.querySelector('.player-wrapper');
+        const toggleBtn = document.querySelector('.vinyl-toggle-btn');
+        const vinylControlBtn = document.querySelector('.vinyl-control-btn');
+        const audio = document.getElementById('bg-music');
+        const playIcon = document.querySelector('.icon-play');
+        const pauseIcon = document.querySelector('.icon-pause');
+        let isPlaying = false;
+        let isExpanded = false;
+
+        document.addEventListener('mousemove', (e) => {
+             mouseX = e.clientX;
+             mouseY = e.clientY;
+             
+             if (cursor) {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+             }
+
+             // Move popup with cursor
+             if (isPopupActive && popup) {
+                popup.style.left = `${e.clientX}px`;
+                popup.style.top = `${e.clientY}px`;
+             }
+        });
+
+        // Trigger popup on hover of Brand
+        const brandLink = document.querySelector('.nav-brand');
+        
+        if (brandLink && popup) {
+            brandLink.addEventListener('mouseenter', () => {
+                 // Disable popup if we are at the end where the big thank you cursor logic takes over
+                 if (thankYouCursor && thankYouCursor.classList.contains('visible')) return;
+                 
+                 isPopupActive = true;
+                 popup.classList.add('active');
+                 if (cursor) cursor.classList.add('hover-active');
+            });
+            
+            brandLink.addEventListener('mouseleave', () => {
+                 isPopupActive = false;
+                 popup.classList.remove('active');
+                 if (cursor) cursor.classList.remove('hover-active');
+            });
+        }
+        
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Prevent scroll jump if it's a link styled as btn
+                e.stopPropagation(); // Don't bubble
+                
+                if (!isExpanded) {
+                    // Expand
+                    playerWrapper.classList.add('expanded');
+                    toggleBtn.classList.add('active'); // Rotates arrow
+                    isExpanded = true;
+                    // Vinyl is revealed, allow playing
+                } else {
+                    // Collapse - Reset everything
+                    playerWrapper.classList.remove('expanded');
+                    toggleBtn.classList.remove('active');
+                    isExpanded = false;
+                    
+                    // Stop music if playing
+                    if (isPlaying) {
+                        audio.pause();
+                        isPlaying = false;
+                        playerWrapper.classList.remove('playing'); // Stop spin
+                        playIcon.style.display = 'block';
+                        pauseIcon.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        if (vinylControlBtn) {
+            vinylControlBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    playerWrapper.classList.remove('playing');
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
+                } else {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        playerWrapper.classList.add('playing');
+                        playIcon.style.display = 'none';
+                        pauseIcon.style.display = 'block';
+                    }).catch(err => {
+                        console.error("Audio Playback Failed:", err);
+                        // Likely need user interaction first - which they did by clicking
+                    });
+                }
+            });
+        }
+        
+        // Animation Loop for Smooth Follow (Lerp)
+        // Lerp helper
+        function lerp(start, end, factor) {
+            return start + (end - start) * factor;
+        }
+
+        function animateCursorFollow() {
+            // Always track target position for smooth entry/exit or just update it
+            // User requested "follow" with delay.
+            
+            // Easing factor (lower = slower/more drag)
+            const easing = 0.08; 
+            
+            // Check if cursor exists
+            if (thankYouCursor) {
+                // If it's visible, we want the smooth catch-up
+                if (thankYouCursor.classList.contains('visible')) {
+                     cursorX = lerp(cursorX, mouseX, easing);
+                     cursorY = lerp(cursorY, mouseY, easing);
+                     
+                     // Add offset to "give it some space"
+                     const offsetX = 20; 
+                     const offsetY = 20;
+    
+                     thankYouCursor.style.left = `${cursorX + offsetX}px`;
+                     thankYouCursor.style.top = `${cursorY + offsetY}px`;
+                } else {
+                     // If hidden, snap directly to mouse so it doesn't fly in from 0,0 when shown
+                     cursorX = mouseX;
+                     cursorY = mouseY;
+                     
+                     // We can also update style here so it's ready, or just leave it since opacity is 0
+                     const offsetX = 20; 
+                     const offsetY = 20;
+                     thankYouCursor.style.left = `${cursorX + offsetX}px`;
+                     thankYouCursor.style.top = `${cursorY + offsetY}px`;
+                }
+            }
+            requestAnimationFrame(animateCursorFollow);
+        }
+        animateCursorFollow(); // Start the loop
+        
+
+        
+        // Toggle Thank You Cursor Visibility based on End Canvas Visibility
+        function updateThankYouCursor() {
+            // Reusing logic from animate loop
+            const endCanvas = document.querySelector('.end-canvas');
+            if (endCanvas && endCanvas.classList.contains('visible')) {
+                thankYouCursor.classList.add('visible');
+            } else {
+                thankYouCursor.classList.remove('visible');
+            }
+            requestAnimationFrame(updateThankYouCursor);
+        }
+        updateThankYouCursor();
+        
+        }
+    </script>
+</body>
+
+</html>
