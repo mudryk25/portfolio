@@ -488,6 +488,7 @@
                 z-index: 900;
                 transition: opacity 0.5s ease;
                 pointer-events: none;
+                mix-blend-mode: difference;
             }
             
             .mobile-scroll-indicator.hidden {
@@ -498,13 +499,13 @@
                 font-family: var(--font-primary);
                 font-size: 0.65rem;
                 font-weight: 700;
-                color: #000;
+                color: #fff;
                 text-transform: uppercase;
                 letter-spacing: 0.1em;
             }
             
             .mobile-scroll-arrow svg {
-                fill: #000;
+                fill: #fff;
                 width: 24px;
                 height: 24px;
                 animation: bounce 2s infinite;
@@ -1161,7 +1162,7 @@
     <div class="mobile-scroll-indicator" id="mobile-scroll-indicator">
         <span class="mobile-scroll-text">SCROLL</span>
         <span class="mobile-scroll-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></svg>
         </span>
     </div>
 
