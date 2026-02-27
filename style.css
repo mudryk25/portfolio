@@ -53,12 +53,12 @@ body.no-scroll {
     pointer-events: none;
     z-index: 9999;
     mix-blend-mode: difference;
-    transition: transform 0.1s var(--ease-smooth);
-    transform: translate(-50%, -50%);
+    will-change: transform;
+    transform: translate3d(0, 0, 0) translate(-50%, -50%);
 }
 
 #custom-cursor.hover {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate3d(0, 0, 0) translate(-50%, -50%) scale(1);
 }
 
 /* Layout Container */
@@ -121,7 +121,7 @@ body.no-scroll {
 }
 
 .bold-name {
-    font-weight: 950;
+    font-weight: 900;
     font-size: clamp(3rem, 10vw, 18.5vh);
     line-height: 0.8;
     font-family: var(--font-nippo);
@@ -182,7 +182,7 @@ body.no-scroll {
     font-size: clamp(0.65rem, 0.75vw, 0.95rem);
     line-height: 1.35;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 400;
     max-width: 260px;
     text-align: justify;
 }

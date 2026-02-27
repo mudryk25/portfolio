@@ -63,15 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const animateCursor = () => {
-        // Easing factor
+        // Easing factor - smoother movement
         const easing = 0.15;
 
         cursorX += (mouseX - cursorX) * easing;
         cursorY += (mouseY - cursorY) * easing;
 
+        // Use transform for GPU acceleration
         if (cursor) {
-            cursor.style.left = `${cursorX}px`;
-            cursor.style.top = `${cursorY}px`;
+            cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
         }
 
         requestAnimationFrame(animateCursor);
