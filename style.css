@@ -8,8 +8,14 @@
     --color-text-dim: #666666;
 
     --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-smooth-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
     --transition-fast: 0.3s var(--ease-smooth);
     --transition-slow: 0.8s var(--ease-smooth);
+}
+
+/* Smooth scrolling globally */
+html {
+    scroll-behavior: smooth;
 }
 
 * {
@@ -24,7 +30,6 @@ body {
     color: var(--color-text);
     font-family: var(--font-primary);
     overflow-x: hidden;
-    /* overflow: hidden; Removed global hidden to allow scrolling where needed */
     -webkit-font-smoothing: antialiased;
     min-height: 100vh;
     width: 100vw;
@@ -198,38 +203,25 @@ body.no-scroll {
     letter-spacing: 0.05em;
     display: flex;
     align-items: center;
-    transition: transform var(--transition-fast), color var(--transition-fast), font-family var(--transition-fast);
+    transition: transform var(--transition-fast), color var(--transition-fast);
     width: fit-content;
     position: relative;
 }
 
-.social-link::after {
-    content: attr(data-text);
-    font-family: var(--font-nippo);
-    height: 0;
-    visibility: hidden;
-    overflow: hidden;
-    display: block;
-    font-weight: 500;
-}
-
 .social-link:hover {
     color: var(--color-text-dim);
-    font-family: var(--font-nippo);
-    font-weight: 500;
 }
 
 .tilt-arrow {
-    margin-left: 0.05rem;
+    margin-left: 0;
     font-size: 0.55rem;
-    opacity: 0;
-    transform: translate(-2px, 2px);
-    transition: opacity 0.3s ease, transform 0.3s var(--ease-smooth);
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: transform 0.3s var(--ease-smooth);
 }
 
 .social-link:hover .tilt-arrow {
-    opacity: 1;
-    transform: translate(0, 0);
+    transform: translate(2px, -2px);
 }
 
 .col ul {
@@ -241,23 +233,7 @@ body.no-scroll {
     text-transform: uppercase;
     margin-bottom: 0.6rem;
     font-weight: 400;
-    transition: font-family var(--transition-fast);
     width: fit-content;
-}
-
-.col ul li::after {
-    content: attr(data-text);
-    font-family: var(--font-nippo);
-    height: 0;
-    visibility: hidden;
-    overflow: hidden;
-    display: block;
-    font-weight: 500;
-}
-
-.col ul li:hover {
-    font-family: var(--font-nippo);
-    font-weight: 500;
 }
 
 .stat-row {
@@ -462,7 +438,9 @@ body.no-scroll {
     }
 
     .social-link .tilt-arrow {
-        display: none;
+        display: inline-flex;
+        opacity: 1;
+        margin-left: 0.3rem;
     }
 
     /* Info grid sections below socials */
@@ -561,5 +539,74 @@ body.no-scroll {
     .footer-left p,
     .footer-right p {
         margin: 0;
+    }
+}
+
+/* ====================================
+   View Transitions API - Seamless Page Navigation
+   ==================================== */
+
+/* Root transition styling */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-old(root) {
+    animation-name: fade-and-scale-out;
+}
+
+::view-transition-new(root) {
+    animation-name: fade-and-scale-in;
+}
+
+@keyframes fade-and-scale-out {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+@keyframes fade-and-scale-in {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Page exit animation class */
+.page-exiting {
+    animation: page-exit 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes page-exit {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* Page enter animation class */
+.page-entering {
+    animation: page-enter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes page-enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

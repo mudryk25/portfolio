@@ -4,19 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin" />
     <title>Ritankar Bhunia | About</title>
     <meta name="description" content="Portfolio of Ritankar Bhunia, Photographer & Designer.">
     <link rel="icon" href="img/favicon.png" type="image/png">
 
-    <!-- Google Fonts & Fontshare -->
+    <!-- Google Fonts & Fontshare - Optimized Loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+    
+    <!-- Preload critical fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syne:wght@400;700;800&display=swap">
+    <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=nippo@400,700,900&display=swap">
+    
+    <!-- Load fonts asynchronously -->
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syne:wght@400;700;800&display=swap"
-        rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=nippo@400,700,900&display=swap" rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://api.fontshare.com/v2/css?f[]=nippo@400,700,900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Fallback for no-JS -->
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+        <link href="https://api.fontshare.com/v2/css?f[]=nippo@400,700,900&display=swap" rel="stylesheet">
+    </noscript>
 
     <link rel="stylesheet" href="style.css">
+    <script>
+        // Mark as visited to skip loader when returning to index
+        sessionStorage.setItem('siteVisited', 'true');
+    </script>
 </head>
 
 <body class="no-scroll">
@@ -54,32 +72,32 @@
                         <ul class="social-links">
                             <li><a href="mailto:ritankarbhunia7474@gmail.com" class="social-link" data-text="Email">Email<span class="tilt-arrow"><svg
                                             xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960"
-                                            width="20px" fill="#666666">
+                                            width="20px" fill="currentColor">
                                             <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
                                         </svg></span></a></li>
                             <li><a href="https://instagram.com/ritankar25" class="social-link" data-text="Instagram">Instagram<span
                                         class="tilt-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="12px"
-                                            viewBox="0 -960 960 960" width="20px" fill="#666666">
+                                            viewBox="0 -960 960 960" width="20px" fill="currentColor">
                                             <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
                                         </svg></span></a></li>
                             <li><a href="https://x.com/ritankar25" class="social-link" data-text="Twitter">Twitter<span class="tilt-arrow"><svg
                                             xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960"
-                                            width="20px" fill="#666666">
+                                            width="20px" fill="currentColor">
                                             <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
                                         </svg></span></a></li>
                             <li><a href="https://github.com/mudryk25" class="social-link" data-text="GitHub">GitHub<span class="tilt-arrow"><svg
                                             xmlns="http://www.w3.org/2000/svg" height="12px" viewBox="0 -960 960 960"
-                                            width="20px" fill="#666666">
+                                            width="20px" fill="currentColor">
                                             <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
                                         </svg></span></a></li>
                             <li><a href="https://pin.it/yrFZ7YsCw" class="social-link" data-text="Pinterest">Pinterest<span
                                         class="tilt-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="12px"
-                                            viewBox="0 -960 960 960" width="20px" fill="#666666">
+                                            viewBox="0 -960 960 960" width="20px" fill="currentColor">
                                             <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
                                         </svg></span></a></li>
                             <li><a href="https://dribbble.com/ritankar-bhunia" class="social-link" data-text="Dribbble">Dribbble<span
                                         class="tilt-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="12px"
-                                            viewBox="0 -960 960 960" width="20px" fill="#666666">
+                                            viewBox="0 -960 960 960" width="20px" fill="currentColor">
                                             <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
                                         </svg></span></a></li>
                         </ul>
