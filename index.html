@@ -1145,12 +1145,12 @@
     <div id="custom-cursor"></div>
 
     <div id="wholesome-popup">
-        <img src="img/me.jpeg" class="popup-img" alt="Me">
+        <img src="img/me.jpeg" class="popup-img" alt="Me" loading="lazy">
     </div>
 
     <!-- Thank You Cursor Extension -->
     <div id="thank-you-cursor">
-        <img src="img/me.jpeg" class="cursor-img" alt="Me">
+        <img src="img/me.jpeg" class="cursor-img" alt="Me" loading="lazy">
         <div class="cursor-msg">in progress</div>
     </div>
     
@@ -1225,7 +1225,7 @@
                         
                         <!-- Album Art + Toggle -->
                         <div class="album-art-wrapper">
-                            <img src="img/album_art.jpeg" alt="Album Art" class="album-art">
+                            <img src="img/album_art.webp" alt="Album Art" class="album-art" loading="lazy">
                             <button class="vinyl-toggle-btn" aria-label="Expand Player">
                                 <svg class="icon-arrow" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></svg>
                             </button>
@@ -1294,36 +1294,34 @@
         
         // Shared Data for Mobile (Duplicated temporarily to fix scope issue)
         const mobileGalleryData = [
-            { src: 'img/best1.jpeg', caption: 'Literature for the lonely' },
-            { src: 'img/best2.jpeg', caption: 'care' },
-            { src: 'img/best3.jpeg', caption: 'warmth' },
-            { src: 'img/best4.jpeg', caption: 'light' },
-            { src: 'img/best5.jpeg', caption: 'rest' },
-            { src: 'img/durga1.jpeg', caption: 'final touch' },
-            { src: 'img/durga2.png', caption: 'artisans at work' },
-            { src: 'img/durga3.jpeg', caption: 'mahishasura mardini' },
-            { src: 'img/durga4.jpeg', caption: 'pandal' },
-            { src: 'img/durga5.jpeg', caption: 'birth of the goddess' },
-            { src: 'img/durga6.jpeg', caption: 'farewell' },
-            { src: 'img/durga7.jpeg', caption: 'kumortuli' },
-            { src: 'img/kash1.jpeg', caption: 'gulmarg' },
-            { src: 'img/kash2.jpeg', caption: 'day at work' },
-            { src: 'img/kol.jpeg', caption: 'a narrow lane of north calcutta' },
-            { src: 'img/old1.jpeg', caption: 'Mercedes-Benz W108/W109' },
-            { src: 'img/old2.jpeg', caption: 'old town' },
-            { src: 'img/old3.jpeg', caption: 'ancient facades' },
-            { src: 'img/old4.jpeg', caption: 'a master\'s workshop' },
-            { src: 'img/phuket1.jpeg', caption: 'emerald sea' },
-            { src: 'img/phuket2.jpeg', caption: 'sacred wat' },
-            { src: 'img/phuket3.jpeg', caption: 'through the tide' },
-            { src: 'img/phuket4.JPG', caption: 'golden chofa' },
-            { src: 'img/phuket5.JPG', caption: 'stranded rocks' },
-            { src: 'img/phuket6.JPG', caption: 'explore' },
-            { src: 'img/phuket7.JPG', caption: 'secret cove' },
-            { src: 'img/phuket8.JPG', caption: 'dusk' },
+            { src: 'img/best1.webp', caption: 'Literature for the lonely' },
+            { src: 'img/best2.webp', caption: 'care' },
+            { src: 'img/best3.webp', caption: 'warmth' },
+            { src: 'img/best4.webp', caption: 'light' },
+            { src: 'img/best5.jpg', caption: 'rest' },
+            { src: 'img/durga1.jpg', caption: 'final touch' },
+            { src: 'img/durga2.webp', caption: 'artisans at work' },
+            { src: 'img/durga3.webp', caption: 'mahishasura mardini' },
+            { src: 'img/durga4.webp', caption: 'pandal' },
+            { src: 'img/durga5.webp', caption: 'birth of the goddess' },
+            { src: 'img/durga6.webp', caption: 'farewell' },
+            { src: 'img/durga7.webp', caption: 'kumortuli' },
+            { src: 'img/kash1.webp', caption: 'gulmarg' },
+            { src: 'img/kash2.webp', caption: 'day at work' },
+            { src: 'img/kol.webp', caption: 'a narrow lane of north calcutta' },
+            { src: 'img/old1.webp', caption: 'Mercedes-Benz W108/W109' },
+            { src: 'img/old3.webp', caption: 'ancient facades' },
+            { src: 'img/old4.webp', caption: 'a master\'s workshop' },
+            { src: 'img/phuket1.webp', caption: 'emerald sea' },
+            { src: 'img/phuket2.webp', caption: 'sacred wat' },
+            { src: 'img/phuket3.webp', caption: 'through the tide' },
+            { src: 'img/phuket4.webp', caption: 'golden chofa' },
+            { src: 'img/phuket5.webp', caption: 'stranded rocks' },
+            { src: 'img/phuket7.webp', caption: 'secret cove' },
+            { src: 'img/phuket8.webp', caption: 'dusk' },
             { src: 'img/pray.jpg', caption: 'devotion' },
-            { src: 'img/shikara.jpeg', caption: 'Shikara' },
-            { src: 'img/tabla.JPG', caption: 'Teen taal' }
+            { src: 'img/shikara.webp', caption: 'Shikara' },
+            { src: 'img/tabla.webp', caption: 'Teen taal' }
         ];
 
         // Initial Check and Listener for Resize
@@ -1423,7 +1421,7 @@
                             <span>YOU</span>
                         </h1>
                         <div class="mobile-signature-block">
-                            <img src="img/me.jpeg" class="mobile-sig-img" alt="Me">
+                            <img src="img/me.jpeg" class="mobile-sig-img" alt="Me" loading="lazy">
                             <span class="mobile-sig-msg">in progress</span>
                         </div>
                     </div>
@@ -1432,7 +1430,7 @@
                         <div class="mobile-on-repeat">CURRENTLY ON REPEAT</div>
                         <div class="mobile-player-wrapper" id="mobile-player-wrapper">
                             <div class="mobile-player-inner">
-                                <img src="img/album_art.jpeg" class="mobile-album-art" alt="Album Art">
+                                <img src="img/album_art.webp" class="mobile-album-art" alt="Album Art" loading="lazy">
                                 <div class="mobile-vinyl-record">
                                     <div class="mobile-vinyl-label"></div>
                                 </div>
@@ -1481,36 +1479,34 @@
         
         // Define your images and their descriptions here
         const galleryImages = [
-            { src: 'img/best1.jpeg', caption: 'Literature for the lonely' },
-            { src: 'img/best2.jpeg', caption: 'care' },
-            { src: 'img/best3.jpeg', caption: 'warmth' },
-            { src: 'img/best4.jpeg', caption: 'light' },
-            { src: 'img/best5.jpeg', caption: 'rest' },
-            { src: 'img/durga1.jpeg', caption: 'final touch' },
-            { src: 'img/durga2.png', caption: 'artisans at work' },
-            { src: 'img/durga3.jpeg', caption: 'mahishasura mardini' },
-            { src: 'img/durga4.jpeg', caption: 'pandal' },
-            { src: 'img/durga5.jpeg', caption: 'birth of the goddess' },
-            { src: 'img/durga6.jpeg', caption: 'farewell' },
-            { src: 'img/durga7.jpeg', caption: 'kumortuli' },
-            { src: 'img/kash1.jpeg', caption: 'gulmarg' },
-            { src: 'img/kash2.jpeg', caption: 'day at work' },
-            { src: 'img/kol.jpeg', caption: 'a narrow lane of north calcutta' },
-            { src: 'img/old1.jpeg', caption: 'Mercedes-Benz W108/W109' },
-            { src: 'img/old2.jpeg', caption: 'old town' },
-            { src: 'img/old3.jpeg', caption: 'ancient facades' },
-            { src: 'img/old4.jpeg', caption: 'a master\'s workshop' },
-            { src: 'img/phuket1.jpeg', caption: 'emerald sea' },
-            { src: 'img/phuket2.jpeg', caption: 'sacred wat' },
-            { src: 'img/phuket3.jpeg', caption: 'through the tide' },
-            { src: 'img/phuket4.JPG', caption: 'golden chofa' },
-            { src: 'img/phuket5.JPG', caption: 'stranded rocks' },
-            { src: 'img/phuket6.JPG', caption: 'explore' },
-            { src: 'img/phuket7.JPG', caption: 'secret cove' },
-            { src: 'img/phuket8.JPG', caption: 'dusk' },
+             { src: 'img/best1.webp', caption: 'Literature for the lonely' },
+            { src: 'img/best2.webp', caption: 'care' },
+            { src: 'img/best3.webp', caption: 'warmth' },
+            { src: 'img/best4.webp', caption: 'light' },
+            { src: 'img/best5.jpg', caption: 'rest' },
+            { src: 'img/durga1.jpg', caption: 'final touch' },
+            { src: 'img/durga2.webp', caption: 'artisans at work' },
+            { src: 'img/durga3.webp', caption: 'mahishasura mardini' },
+            { src: 'img/durga4.webp', caption: 'pandal' },
+            { src: 'img/durga5.webp', caption: 'birth of the goddess' },
+            { src: 'img/durga6.webp', caption: 'farewell' },
+            { src: 'img/durga7.webp', caption: 'kumortuli' },
+            { src: 'img/kash1.webp', caption: 'gulmarg' },
+            { src: 'img/kash2.webp', caption: 'day at work' },
+            { src: 'img/kol.webp', caption: 'a narrow lane of north calcutta' },
+            { src: 'img/old1.webp', caption: 'Mercedes-Benz W108/W109' },
+            { src: 'img/old3.webp', caption: 'ancient facades' },
+            { src: 'img/old4.webp', caption: 'a master\'s workshop' },
+            { src: 'img/phuket1.webp', caption: 'emerald sea' },
+            { src: 'img/phuket2.webp', caption: 'sacred wat' },
+            { src: 'img/phuket3.webp', caption: 'through the tide' },
+            { src: 'img/phuket4.webp', caption: 'golden chofa' },
+            { src: 'img/phuket5.webp', caption: 'stranded rocks' },
+            { src: 'img/phuket7.webp', caption: 'secret cove' },
+            { src: 'img/phuket8.webp', caption: 'dusk' },
             { src: 'img/pray.jpg', caption: 'devotion' },
-            { src: 'img/shikara.jpeg', caption: 'Shikara' },
-            { src: 'img/tabla.JPG', caption: 'Teen taal' }
+            { src: 'img/shikara.webp', caption: 'Shikara' },
+            { src: 'img/tabla.webp', caption: 'Teen taal' }
         ];
 
         const numImages = galleryImages.length;
